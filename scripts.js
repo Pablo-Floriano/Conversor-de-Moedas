@@ -3,7 +3,24 @@ const seletor2 = document.querySelector(".convert-in")
 const coinFlag1 = document.querySelector("#flag1")
 const coinFlag2 = document.querySelector("#flag2")
 const button = document.querySelector("button")
-let coin2 = doc
+let coin2 = document.querySelector(".coin2")
+let coin1 = document.querySelector(".coin1")
+
+seletor1.addEventListener("change", converter)
+seletor2.addEventListener("change", converter)
+
+// apertar o botao e converter o valor
+
+button.addEventListener("click", converter)
+
+function converter() {
+    if(seletor1.value == "real"){
+        const input = document.querySelector("input").value
+        let dolar = 0.17
+        let euro = 0.16
+        let libra = 0.14
+        let bitcoin = 0.0000020
+        let real = 1
 
         // adicionar os valores recebidos na tela
         //alterar valores das moedas
