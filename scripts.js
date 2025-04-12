@@ -13,13 +13,18 @@ seletor2.addEventListener("change", converter)
 
 button.addEventListener("click", converter)
 
-function converter() {
-    if(seletor1.value == "real"){
+async function converter() {
+
+    const moedas = await fetch("https://economia.awesomeapi.com.br/json/last/USD-EUR,USD-GBP,BTC-USD,BRL-USD,BRL-EUR,BRL-GBP,BTC-BRL,EUR-GBP,BTC-EUR").then(res => res.json())
+
+    console.log(moedas)
+
+    if (seletor1.value == "real") {
         const input = document.querySelector("input").value
-        let dolar = 0.17
-        let euro = 0.16
-        let libra = 0.14
-        let bitcoin = 0.0000020
+        let dolar = moedas.BRLUSD.high
+        let euro = moedas.BRLEUR.high
+        let libra = moedas.BRLGBP.high
+        let bitcoin = moedas.BTCBRL.high
         let real = 1
 
         // adicionar os valores recebidos na tela
@@ -66,7 +71,7 @@ function converter() {
                 style: "currency",
                 currency: "BTC",
                 maximumFractionDigits: 7
-            }).format(input * bitcoin)
+            }).format(input / bitcoin)
 
             coin2.innerHTML = "Bitcoin"
             coinFlag2.src = "./assets/bitcoin.png"
@@ -81,11 +86,6 @@ function converter() {
             coin2.innerHTML = "Real"
             coinFlag2.src = "./assets/brasil.png"
         }
-
-
-
-
-
 
         coin1.innerHTML = "Real"
         coinFlag1.src = "./assets/brasil.png"
@@ -96,17 +96,17 @@ function converter() {
         }).format(input)
     }
 
-    if(seletor1.value == "dolar"){
+    if (seletor1.value == "dolar") {
 
         coin1.innerHTML = "Dólar"
         coinFlag1.src = "./assets/usa.png"
 
         const input = document.querySelector("input").value
         let dolar = 1
-        let euro = 0.94
-        let libra = 0.79
-        let bitcoin = 0.000011
-        let real = 5.77
+        let euro = moedas.USDEUR.high
+        let libra = moedas.USDGBP.high
+        let bitcoin = moedas.BTCEUR.high
+        let real = moedas.BRLUSD.high
 
         // adicionar os valores recebidos na tela
         //alterar valores das moedas
@@ -152,7 +152,7 @@ function converter() {
                 style: "currency",
                 currency: "BTC",
                 maximumFractionDigits: 7
-            }).format(input * bitcoin)
+            }).format(input / bitcoin)
 
             coin2.innerHTML = "Bitcoin"
             coinFlag2.src = "./assets/bitcoin.png"
@@ -162,17 +162,11 @@ function converter() {
             coinValue2.innerHTML = new Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL"
-            }).format(input * real)
+            }).format(input / real)
 
             coin2.innerHTML = "Real"
             coinFlag2.src = "./assets/brasil.png"
         }
-
-
-
-
-
-
 
 
         coinValue1.innerHTML = new Intl.NumberFormat('en-BR', {
@@ -181,17 +175,17 @@ function converter() {
         }).format(input)
     }
 
-    if(seletor1.value == "euro"){
-        
+    if (seletor1.value == "euro") {
+
         coin1.innerHTML = "Euro"
         coinFlag1.src = "./assets/euro.png"
 
         const input = document.querySelector("input").value
-        let dolar = 1.06
+        let dolar = moedas.USDEUR.high
         let euro = 1
-        let libra = 0.84
-        let bitcoin = 0.000012
-        let real = 6.12
+        let libra = moedas.EURGBP.high
+        let bitcoin = moedas.BTCEUR.high
+        let real = moedas.BRLEUR.high
 
         // adicionar os valores recebidos na tela
         //alterar valores das moedas
@@ -202,7 +196,7 @@ function converter() {
             coinValue2.innerHTML = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
-            }).format(input * dolar)
+            }).format(input / dolar)
 
         }
 
@@ -237,7 +231,7 @@ function converter() {
                 style: "currency",
                 currency: "BTC",
                 maximumFractionDigits: 7
-            }).format(input * bitcoin)
+            }).format(input / bitcoin)
 
             coin2.innerHTML = "Bitcoin"
             coinFlag2.src = "./assets/bitcoin.png"
@@ -247,7 +241,7 @@ function converter() {
             coinValue2.innerHTML = new Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL"
-            }).format(input * real)
+            }).format(input / real)
 
             coin2.innerHTML = "Real"
             coinFlag2.src = "./assets/brasil.png"
@@ -260,17 +254,17 @@ function converter() {
         }).format(input)
     }
 
-    if(seletor1.value == "libra"){
+    if (seletor1.value == "libra") {
 
         coin1.innerHTML = "Libra"
         coinFlag1.src = "./assets/libra.png"
 
         const input = document.querySelector("input").value
-        let dolar = 1.27
-        let euro = 1.2
+        let dolar = moedas.USDGBP.high
+        let euro = moedas.EURGBP.high
         let libra = 1
         let bitcoin = 0.000014
-        let real = 7.33
+        let real = moedas.BRLGBP.high
 
         // adicionar os valores recebidos na tela
         //alterar valores das moedas
@@ -281,7 +275,7 @@ function converter() {
             coinValue2.innerHTML = new Intl.NumberFormat('en-US', {
                 style: 'currency',
                 currency: 'USD'
-            }).format(input * dolar)
+            }).format(input / dolar)
 
         }
 
@@ -294,7 +288,7 @@ function converter() {
             coinValue2.innerHTML = new Intl.NumberFormat("de-DE", {
                 style: "currency",
                 currency: "EUR"
-            }).format(input * euro)
+            }).format(input / euro)
 
             coin2.innerHTML = "Euro"
             coinFlag2.src = "./assets/euro.png"
@@ -326,7 +320,7 @@ function converter() {
             coinValue2.innerHTML = new Intl.NumberFormat("pt-BR", {
                 style: "currency",
                 currency: "BRL"
-            }).format(input * real)
+            }).format(input / real)
 
             coin2.innerHTML = "Real"
             coinFlag2.src = "./assets/brasil.png"
@@ -339,17 +333,17 @@ function converter() {
         }).format(input)
     }
 
-    if(seletor1.value == "bitcoin"){
+    if (seletor1.value == "bitcoin") {
 
         coin1.innerHTML = "Bitcoin"
         coinFlag1.src = "./assets/bitcoin.png"
 
         const input = document.querySelector("input").value
-        let dolar = 92296.18
-        let euro = 86988.03
+        let dolar = moedas.BTCUSD.high
+        let euro = moedas.BTCEUR.high
         let libra = 72712.50
         let bitcoin = 1
-        let real = 533028.71
+        let real = moedas.BTCBRL.high
 
         // adicionar os valores recebidos na tela
         //alterar valores das moedas
@@ -417,8 +411,8 @@ function converter() {
             currency: 'BTC'
         }).format(input)
     }
-    
-    }
+
+}
 
 
 

@@ -49,7 +49,9 @@ input{
     cursor: text;
 }
 
-
+input::placeholder{
+    color: #6868688a;
+}
 
 label {
     margin-bottom: 24px;
