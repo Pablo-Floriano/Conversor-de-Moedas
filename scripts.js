@@ -420,20 +420,3 @@ async function converter() {
 
 
 
-
-
-
-
-
-
-/*
-let coin1value = 0
-let coin2value = 0
-
-seletor1.addEventListener("change", (changeCoin))
-
-function changeCoin(){
-    if(seletor1 == "R$ Real brasileiro"){
-        coinFlag1.style.src =
-    }
-}*/
