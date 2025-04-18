@@ -9,12 +9,16 @@
 
 body {
     background-color: #8A51FC;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .logo {
-    display: block;
     width: 150px;
-    margin: 20px auto;
 }
 
 main {
@@ -24,8 +28,6 @@ main {
     flex-direction: column;
     border-radius: 30px;
     padding: 44px 20px 23px;
-    margin: 0 auto 60px;
-
 }
 
 select, input {
@@ -124,5 +126,4 @@ div{
 
 .arrow{
     width: 35px;
-    
 }
